@@ -1,1 +1,1 @@
-some practicing in language c
+some practice in language c
