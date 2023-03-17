@@ -6,18 +6,17 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:48:56 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/04 02:21:20 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/17 13:00:55 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void fill_map_in_matrix_bonus(t_var *var, int fd, char **argv)
+void	fill_map_in_matrix_bonus(t_var *var, int fd, char **argv)
 {
 	var->number_of_coll = 0;
 	var->number_of_player = 0;
 	var->number_of_exit = 0;
-	
 	height_width_wind_bonus(var, fd);
 	fd = open(argv[1], O_RDONLY);
 	var->str = (char **)malloc(sizeof(char *) * ((var->height_win / 60)) + 1);
@@ -31,21 +30,27 @@ void fill_map_in_matrix_bonus(t_var *var, int fd, char **argv)
 	check_map_is_playable_bonus(var);
 }
 
-void protect_img_bonus(t_var *var)
+void	protect_img_bonus(t_var *var)
 {
 	if (!var->img_ptr_wall || !var->img_ptr_ground || !var->img_ptr_coll
-		|| !var->img_ptr_exit || !var->img_ptr_player)
+		|| !var->img_ptr_exit || !var->img_ptr_player || !var->img_ptr_enemy)
 	{
 		perror("");
 		write(2, "Can't access to image.\n", 24);
+		t_enemy_clean(&(var->enemy));
+		free_all_and_exit_bonus(var);
+	}
+	if (!var->mlx_ptr || !var->win_ptr)
+	{
+		perror("");
 		free_all_and_exit_bonus(var);
 	}
 }
 
-void fill_map_in_matrix_next_bonus(t_var *var, int fd)
+void	fill_map_in_matrix_next_bonus(t_var *var, int fd)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < var->height_win / 60)
@@ -67,32 +72,31 @@ void fill_map_in_matrix_next_bonus(t_var *var, int fd)
 	var->str[i] = NULL;
 }
 
-int handle_key_press_bonus(int keycode, t_var *var)
+int	handle_key_press_bonus(int keycode, t_var *var)
 {
-	static int m_up;
-	static int m_down;
-	static int m_right;
-	static int m_left;
-	
-	// printf("%d\n", var->number_of_coll);
-	if (keycode == 13)
+	static int	m_up;
+	static int	m_down;
+	static int	m_right;
+	static int	m_left;
+
+	if (keycode == 13 || keycode == 126)
 		animation_player_up(var, &m_up);
-	else if (keycode == 1)
-		animation_player_down(var ,&m_down);
-	else if (keycode == 2)
+	else if (keycode == 1 || keycode == 125)
+		animation_player_down(var, &m_down);
+	else if (keycode == 2 || keycode == 124)
 		animation_player_right(var, &m_right);
-	else if (keycode == 0)
+	else if (keycode == 0 || keycode == 123)
 		animation_player_left(var, &m_left);
 	else if (keycode == 53)
 	{
 		mlx_destroy_window(var->mlx_ptr, var->win_ptr);
 		free_all_and_exit_bonus(var);
 	}
-    return 0;
+	return (0);
 }
 
-int destroy_notify_handler(t_var *var)
+int	destroy_notify_handler(t_var *var)
 {
-    free_all_and_exit_bonus(var);
-    return (0);
+	free_all_and_exit_bonus(var);
+	return (0);
 }
