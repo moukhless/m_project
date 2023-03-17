@@ -22,11 +22,11 @@ int check_is_number(char *number)
         if (number[j] == '-' || number[j] == '+')
         {
             if (number[j + 1] == ' ')
-                return (write(1, "ERREUR\n", 7), 0);
+                return (write(1, "ERROR\n", 7), 0);
             j++;
         }
         if ((number[j] < '0' || number[j] > '9') && number[j] != ' ')
-            return (write(1, "ERREUR\n", 7), 0);
+            return (write(1, "ERROR\n", 7), 0);
         j++;
     }
     return (1);
@@ -59,19 +59,19 @@ int *fill_arr(int argc, char **argv, int count_num)
    return (arr);
 }
 
-int check_deplicate(int *arr)
+int check_deplicate(int *arr, int count_num)
 {
     int i;
     int j;
 
     i = 0;
-    while (arr[i])
+    while (i < count_num)
     {
         j = i + 1;
-        while (arr[j])
+        while (j < count_num)
         {
             if (arr[i] == arr[j])
-                return (write(1, "ERREUR\n", 7), 0);
+                return (write(1, "ERROR\n", 7), 0);
             j++;
         }
         i++; 
@@ -79,13 +79,13 @@ int check_deplicate(int *arr)
     return (1);
 }
 
-int check_is_integer(char *number)
+int  check_is_integer(char *number)
 {
     long num;
     
     num = ft_atoi(number);
     if (num > INT_MAX || num < INT_MIN)
-        return (write(1, "ERREUR\n", 7), 0);
+        return (write(1, "ERROR\n", 7), 0);
     return (1);
 }
 
@@ -103,19 +103,17 @@ int check_is_number_and_integer(int argc, char **argv)
         if (check_is_number(argv[i]) == 0)
             return (0);
         j = 0;
-        str = ft_split(argv[i], ' ');
+        str = ft_split(argv[i++], ' ');
         while (str[j])
         {
-            if (check_is_integer(str[j]) == 0)
+            if (check_is_integer(str[j++]) == 0)
                 return (0);
                 count_num++;
-            j++;
         }
         j = 0;
         while (str[j])
             free(str[j++]);
         free(str);
-        i++;
     }
     return (count_num);
 }

@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:43:08 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/02/10 02:22:56 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/02/10 05:24:20 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int *arr_longest_list(t_stack *stack_a)
 
     j = longest_list(stack_a) - 1;
     p = stack_a;
-    arr = malloc(sizeof(int) * longest_list(stack_a));
+    arr = malloc(sizeof(int) * (j + 1));
     if (!arr)
         return (NULL);
-    while (p->status != longest_list(stack_a))
+    while (p->status != (j + 1))
         p = p->next;
     while (p->next_index != t_stack_size(stack_a))
     {
@@ -68,12 +68,14 @@ void move_to_stack_b(t_stack **stack_a , t_stack **stack_b)
 {
     t_stack *p;
     int *arr;
+    int lon_lis;
     
+    lon_lis = longest_list(*stack_a) - 1;
     p = *stack_a;
     arr = arr_longest_list(p);
     while (p)
     {
-        if (find_number_in_arr(p->number, arr, longest_list(*stack_a) - 1) == 1)
+        if (find_number_in_arr(p->number, arr, lon_lis) == 1)
             p = p->next;
         else
         {

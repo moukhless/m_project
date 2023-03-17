@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:13:30 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/02/10 02:22:44 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/16 19:44:02 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void rotate(t_stack **s_list);
 void reverse_rotate(t_stack **s_list);
 long ft_atoi(char *str);
 int check_is_number(char *number);
-int check_deplicate(int *arr);
+int check_deplicate(int *arr, int count_num);
 int check_is_integer(char *number);
 int check_is_number_and_integer(int argc, char **argv);
 char	**ft_split(char *s, char c);
@@ -64,6 +64,27 @@ int min_movement(t_stack *stack_b);
 void same_move(t_stack **stack_a, t_stack **stack_b, t_stack *p, t_stack *p1);
 void move_to_stack_a_next(t_stack **stack_a, t_stack **stack_b, int *arr, int edge_of_arr);
 void sort_stack(t_stack **stack_a, int *arr);
-void affiche_stack(t_stack *stack);
+
+void calcul_mov1(t_stack *s_b, t_stack *s_a, t_stack *stack_a, t_stack *stack_b);
+void calcul_mov2(t_stack *s_b, t_stack *s_a, t_stack *stack_a, t_stack *stack_b);
+void calcul_mov3(t_stack *s_b, t_stack *s_a, t_stack *stack_a, t_stack *stack_b);
+void calcul_mov4(t_stack *s_b, t_stack *s_a, t_stack *stack_a, t_stack *stack_b);
+
+void do_same_move1(t_stack **stack_a, t_stack **stack_b, t_stack *s_b, t_stack *s_a);
+void do_same_move2(t_stack **stack_a, t_stack **stack_b, t_stack *s_b, t_stack *s_a);
+
+void move_to_stack_a_next1(t_stack **stack_a, t_stack **stack_b, t_stack *s_a, t_stack *s_b);
+
+void do_rotate_a(t_stack **stack_a, t_stack *s_a);
+void do_rotate_b(t_stack **stack_b, t_stack *s_b);
+void do_reverse_rotate_a(t_stack **stack_a, t_stack *s_a);
+void do_reverse_rotate_b(t_stack **stack_b, t_stack *s_b);
+
+void do_algo(t_stack *stack_a, t_stack *stack_b, int *arr, int count_num);
+
+void sort_stack_size_3(t_stack *stack_a, t_stack *stack_b);
+void sort_stack_size_3_next(t_stack *stack_a, t_stack *stack_b, t_stack *s_a);
+void sort_stack_size_5(t_stack *stack_a, t_stack *stack_b, int *arr, int edge_of_arr);
+void sort_stack_size_5_next(t_stack *stack_a, t_stack *stack_b, int *arr, int edge_of_arr);
 
 #endif

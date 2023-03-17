@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:40:03 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/02/10 02:24:35 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/16 19:17:22 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void reset_status(t_stack *stack_b)
 int find_next_number_in_arr(t_stack *stack_a ,int number, int *arr, int edge_of_arr)
 {
     int i;
-    t_stack *p;
 
-    p = stack_a;
     i = 0;
     while (i <= edge_of_arr)
     {
@@ -72,18 +70,20 @@ void sort_stack(t_stack **stack_a, int *arr)
     }
     if (p->index <= (t_stack_size(*stack_a) / 2))
     {
-        while ((p->index)-- > 0)
+        while (p->index > 0)
         {
             rotate(stack_a);
             write(1, "ra\n", 3);
+            (p->index)--;
         }
     }
     else if (p->index > (t_stack_size(*stack_a) / 2))
     {
-        while ((p->index)++ < t_stack_size(*stack_a))
+        while (p->index < t_stack_size(*stack_a))
         {
             reverse_rotate(stack_a);
             write(1, "rra\n", 4);
+            (p->index)++;
         }
     }
 }

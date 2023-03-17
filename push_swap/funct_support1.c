@@ -56,7 +56,7 @@ int longest_list(t_stack *stack_a)
     int max;
     t_stack *p;
 
-    max = 0;
+    max = stack_a->status;
     while (stack_a)
     {
          p = stack_a->next;
