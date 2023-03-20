@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:26:27 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/17 12:54:16 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 01:39:11 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ void	fill_matrix(t_var *var, char **matrix);
 void	initialisation(t_var *var);
 char	*itoa(int num);
 int		count_num(int num);
+void	check_map_type(char *str);
+int		ft_strcmp(char *str1, char *str2);
 
 #endif

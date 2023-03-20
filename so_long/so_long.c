@@ -6,11 +6,58 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:27:08 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/17 12:43:09 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 01:54:26 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	ft_strcmp(char *str1, char *str2)
+{
+	size_t	i;
+
+	i = 0;
+	while (str1[i] || str2[i])
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
+	}
+	return (0);
+}
+
+void	check_map_type(char *str)
+{
+	int		i;
+	int		j;
+	char	*type;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '.')
+		{
+			i++;
+			j = 0;
+			type = malloc(4);
+			while (type[j])
+				type[j++] = str[i++];
+			type[j] = '\0';
+		}
+		if (str[i] == '\0')
+			break ;
+		i++;
+	}
+	if (ft_strcmp(type, "ber") != 0)
+	{
+		write(2, "ERROR\n", 6);
+		write(2, "Type of file is not valide\n", 28);
+		free(type);
+		exit (0);
+	}
+	else
+		free(type);
+}
 
 void	initialisation(t_var *var)
 {
@@ -45,6 +92,7 @@ int	main(int argc, char **argv)
 		exit (0);
 	}
 	fd = open(argv[argc - 1], O_RDWR);
+	check_map_type(argv[argc - 1]);
 	var = (t_var *)malloc(sizeof(t_var));
 	if (!var)
 		return (0);

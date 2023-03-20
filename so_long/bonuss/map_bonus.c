@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 23:02:49 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/07 22:34:22 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 01:36:27 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	map_next_bonus1(t_var *var, int i, int j)
 	}
 	else
 	{
+		write(2, "ERROR\n", 6);
 		write(2, "there are a caracter not defined.\n", 34);
 		free_all_and_exit_bonus(var);
 	}

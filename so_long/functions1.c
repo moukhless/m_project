@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 14:53:47 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/17 13:08:07 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 01:33:42 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ void	fill_map_in_matrix(t_var *var, int fd, char **argv)
 	var->number_of_player = 0;
 	var->number_of_exit = 0;
 	height_width_wind(var, fd);
+	if (var->height_win > 2880 || var->width_win > 5120)
+	{
+		write(2, "ERROR\n", 6);
+		write(1, "Bad resolution.\n", 17);
+		free(var);
+		exit (0);
+	}
 	fd = open(argv[1], O_RDONLY);
 	var->str = (char **)malloc(sizeof(char *) * ((var->height_win / 60)) + 1);
 	if (!var->str)
@@ -95,7 +102,7 @@ void	protect_img(t_var *var)
 	if (!var->img_ptr_wall || !var->img_ptr_ground || !var->img_ptr_coll
 		|| !var->img_ptr_exit || !var->img_ptr_player)
 	{
-		perror("");
+		write(2, "ERROR\n", 6);
 		write(2, "Can't access to image.\n", 24);
 		free_all_and_exit(var);
 	}

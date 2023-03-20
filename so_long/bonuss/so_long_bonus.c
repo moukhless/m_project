@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:22:31 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/07 22:55:35 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 01:42:40 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	main(int argc, char **argv)
 		exit (0);
 	}
 	fd = open(argv[argc - 1], O_RDWR);
+	check_map_type_bonus(argv[argc - 1]);
 	var = (t_var *)malloc(sizeof(t_var));
 	if (!var)
 		return (0);

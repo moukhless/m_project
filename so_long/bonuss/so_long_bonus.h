@@ -6,9 +6,10 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:11:30 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/08 22:55:07 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 01:41:13 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
@@ -116,5 +117,7 @@ char	*itoa(int num);
 char	*scores(t_var *var, int num);
 void	map_next_bonus1(t_var *var, int i, int j);
 void	initialisation_bonus(t_var *var);
+int		ft_strcmp_bonus(char *str1, char *str2);
+void	check_map_type_bonus(char *str);
 
 #endif

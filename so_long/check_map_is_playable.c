@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:46:21 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/07 19:51:44 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 01:32:41 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	check_map_is_playable_next(t_var *var, char **matrix)
 				&& matrix[i + 1][j] == '0' && matrix[i][j - 1] == '0'
 				&& matrix[i][j + 1] == '0')))
 			{
+				write(2, "ERROR\n", 6);
 				write(2, "Your map is not playble.\n", 25);
 				free_matrix(matrix);
 				free_all_and_exit(var);

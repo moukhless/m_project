@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:52:01 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/07 20:01:47 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 00:56:38 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,13 @@ void	check_map_walls(t_var *var)
 void	check_map(t_var *var)
 {
 	if (var->number_of_player > 1 || var->number_of_exit > 1
-		|| var->height_win >= var->width_win
 		|| var->number_of_player == 0 || var->number_of_exit == 0
 		|| var->number_of_coll == 0)
 	{
 		write(2, "Error\n", 6);
-		if (var->height_win >= var->width_win)
-			write(2, "Your map must be rectangular.\n", 30);
-		else if (var->number_of_player == 0 || var->number_of_exit == 0
+		if (var->number_of_player == 0 || var->number_of_exit == 0
 			|| var->number_of_coll == 0)
-			write(2, "You missed one caracter\n", 25);
+			write(2, "You missed caracter\n", 25);
 		else
 			write(2, "Duplicates characters (exit/start).\n", 36);
 		free_all_and_exit(var);

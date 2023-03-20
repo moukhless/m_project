@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:43:39 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/08 22:44:02 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 01:35:32 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	height_width_wind_bonus(t_var *var, int fd)
 		var->width_win = width_wind_bonus(string) * 60;
 	else
 	{
-		perror("");
+		write(2, "ERROR\n", 6);
 		write(2, "Can't access to map.\n", 21);
 		free(var);
 		exit(0);

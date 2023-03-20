@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:48:56 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/17 13:00:55 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 01:51:30 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ void	fill_map_in_matrix_bonus(t_var *var, int fd, char **argv)
 	var->number_of_player = 0;
 	var->number_of_exit = 0;
 	height_width_wind_bonus(var, fd);
+	if (var->height_win > 2880 || var->width_win > 5120)
+	{
+		write(2, "ERROR\n", 6);
+		write(1, "Bad resolution.\n", 17);
+		free(var);
+		exit (0);
+	}
 	fd = open(argv[1], O_RDONLY);
 	var->str = (char **)malloc(sizeof(char *) * ((var->height_win / 60)) + 1);
 	if (!var->str)
@@ -35,14 +42,15 @@ void	protect_img_bonus(t_var *var)
 	if (!var->img_ptr_wall || !var->img_ptr_ground || !var->img_ptr_coll
 		|| !var->img_ptr_exit || !var->img_ptr_player || !var->img_ptr_enemy)
 	{
-		perror("");
+		write(2, "ERROR\n", 6);
 		write(2, "Can't access to image.\n", 24);
 		t_enemy_clean(&(var->enemy));
 		free_all_and_exit_bonus(var);
 	}
 	if (!var->mlx_ptr || !var->win_ptr)
 	{
-		perror("");
+		write(2, "ERROR\n", 6);
+		write(2, "Problem in alocation\n", 21);
 		free_all_and_exit_bonus(var);
 	}
 }
