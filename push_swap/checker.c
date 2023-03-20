@@ -1,34 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 17:15:51 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/20 19:45:43 by amoukhle         ###   ########.fr       */
+/*   Created: 2023/03/17 13:17:37 by amoukhle          #+#    #+#             */
+/*   Updated: 2023/03/20 20:37:58 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	do_algo(t_stack *stack_a, t_stack *stack_b,
-		int *arr, int count_num)
+void	checker_next1(t_stack *stack_a, t_stack *stack_b, char *inp)
 {
-	sort_arr(arr, count_num);
-	if (t_stack_size(stack_a) == 3 && check_stack_sorted(stack_a) == 0)
-		sort_stack_size_3(&stack_a, &stack_b);
-	else if (t_stack_size(stack_a) == 5 && check_stack_sorted(stack_a) == 0)
-		sort_stack_size_5(stack_a, stack_b, arr, count_num);
-	else
+	int		i;
+	char	**sort;
+
+	i = 0;
+	if (!inp)
 	{
-		longest_increasing_subsequence(stack_a);
-		move_to_stack_b(&stack_a, &stack_b);
-		move_to_stack_a(&stack_a, &stack_b, arr, count_num - 1);
+		result(stack_a, stack_b);
+		exit (0);
 	}
-	if (check_stack_sorted(stack_a) == 0)
-		sort_stack(&stack_a, arr);
-	free(arr);
+	sort = ft_split(inp, '\n');
+	free(inp);
+	while (sort[i])
+		do_instructions(sort, &stack_a, &stack_b, i++);
+	free_double_str(sort);
+	result(stack_a, stack_b);
+}
+
+void	free_double_str(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str[i]);
+	free(str);
+}
+
+void	result(t_stack *stack_a, t_stack *stack_b)
+{
+	if (t_stack_size(stack_a) != 0)
+	{
+		if (check_stack_sorted(stack_a) == 1 && t_stack_size(stack_b) == 0)
+			write(1, "OK\n", 3);
+		else
+			write(2, "KO\n", 3);
+	}
+	else
+		write(2, "KO\n", 3);
 	t_stack_clean(&stack_a);
 	t_stack_clean(&stack_b);
 }
@@ -36,10 +63,10 @@ void	do_algo(t_stack *stack_a, t_stack *stack_b,
 int	main(int argc, char **argv)
 {
 	int		count_num;
-	int		*arr;
-	int		i;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	int		i;
+	int		*arr;
 
 	count_num = check_is_number_and_integer(argc, argv);
 	if (count_num == 0)
@@ -55,6 +82,7 @@ int	main(int argc, char **argv)
 		addnumber_back(&stack_a, new_number(arr[i], i, 1, count_num));
 		i++;
 	}
-	do_algo(stack_a, stack_b, arr, count_num);
-	return (0);
+	free(arr);
+	checker_next(stack_a, stack_b);
+	exit (0);
 }

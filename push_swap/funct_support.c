@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 17:19:30 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/02/03 15:01:56 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:14:05 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,26 @@
 
 long	ft_atoi(char *str)
 {
-	int	ch;
-	int	signe;
-	long res;
+	int		ch;
+	int		signe;
+	long	res;
 
 	ch = 0;
 	signe = 1;
 	res = 0;
-	while (str[ch] == ' ' || str[ch] == '\t' || str[ch] == '\n'
-		|| str[ch] == '\v' || str[ch] == '\f' || str[ch] == '\r')
+	while (str[ch] >= 9 && str[ch] <= 13 && str[ch] == ' ')
 		ch++;
 	if (str[ch] == '-' || str[ch] == '+')
-	{
-		if (str[ch] == '-')
+		if (str[ch++] == '-')
 			signe = -1;
-		ch++;
-	}
 	while (str[ch] >= '0' && str[ch] <= '9')
 	{
+		if (res * signe > INT_MAX || res * signe < INT_MIN)
+			return (res);
 		res = (res * 10) + (str[ch] - '0');
 		ch++;
 	}
-    return (res * signe);	
+	return (res * signe);
 }
 
 int	num_w(char *str, char c)
