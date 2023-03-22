@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:48:56 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/20 01:51:30 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:21:41 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	fill_map_in_matrix_bonus(t_var *var, int fd, char **argv)
 	if (var->height_win > 2880 || var->width_win > 5120)
 	{
 		write(2, "ERROR\n", 6);
-		write(1, "Bad resolution.\n", 17);
+		write(2, "Bad resolution.\n", 16);
 		free(var);
 		exit (0);
 	}
@@ -43,8 +43,7 @@ void	protect_img_bonus(t_var *var)
 		|| !var->img_ptr_exit || !var->img_ptr_player || !var->img_ptr_enemy)
 	{
 		write(2, "ERROR\n", 6);
-		write(2, "Can't access to image.\n", 24);
-		t_enemy_clean(&(var->enemy));
+		write(2, "Can't access to image.\n", 23);
 		free_all_and_exit_bonus(var);
 	}
 	if (!var->mlx_ptr || !var->win_ptr)

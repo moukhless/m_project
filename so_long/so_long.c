@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:27:08 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/20 01:54:26 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/22 08:09:50 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,26 @@ void	check_map_type(char *str)
 	char	*type;
 
 	i = 0;
+	type = NULL;
+	i = get_point(str);
+	j = i + 1;
 	while (str[i])
-	{
-		if (str[i] == '.')
-		{
-			i++;
-			j = 0;
-			type = malloc(4);
-			while (type[j])
-				type[j++] = str[i++];
-			type[j] = '\0';
-		}
-		if (str[i] == '\0')
-			break ;
 		i++;
-	}
-	if (ft_strcmp(type, "ber") != 0)
+	type = malloc(i - j + 1);
+	i = j;
+	j = 0;
+	while (str[i])
+		type[j++] = str[i++];
+	type[j] = '\0';
+	check_map_type_next(type);
+}
+
+void	check_map_type_next(char *type)
+{
+	if (type == NULL || ft_strcmp(type, "ber") != 0)
 	{
 		write(2, "ERROR\n", 6);
-		write(2, "Type of file is not valide\n", 28);
+		write(2, "Type of file is not valide\n", 27);
 		free(type);
 		exit (0);
 	}
@@ -91,8 +92,8 @@ int	main(int argc, char **argv)
 		write(2, "You should only be used 2 arg.\n", 31);
 		exit (0);
 	}
-	fd = open(argv[argc - 1], O_RDWR);
 	check_map_type(argv[argc - 1]);
+	fd = open(argv[argc - 1], O_RDWR);
 	var = (t_var *)malloc(sizeof(t_var));
 	if (!var)
 		return (0);

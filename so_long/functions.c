@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:52:01 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/20 00:56:38 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:14:18 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	check_map(t_var *var)
 		write(2, "Error\n", 6);
 		if (var->number_of_player == 0 || var->number_of_exit == 0
 			|| var->number_of_coll == 0)
-			write(2, "You missed caracter\n", 25);
+			write(2, "You missed caracter\n", 20);
 		else
 			write(2, "Duplicates characters (exit/start).\n", 36);
 		free_all_and_exit(var);

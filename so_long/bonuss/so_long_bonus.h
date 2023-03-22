@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:11:30 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/20 01:41:13 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/22 08:08:23 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,9 @@ char	*scores(t_var *var, int num);
 void	map_next_bonus1(t_var *var, int i, int j);
 void	initialisation_bonus(t_var *var);
 int		ft_strcmp_bonus(char *str1, char *str2);
+void	check_map_type_next_bonus(char *type);
 void	check_map_type_bonus(char *str);
+void	protect_img_enemy_bonus(t_var *var);
+int		get_point_bonus(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 21:15:35 by amoukhle          #+#    #+#              #
-#    Updated: 2023/03/20 01:41:39 by amoukhle         ###   ########.fr        #
+#    Updated: 2023/03/21 10:45:17 by amoukhle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ all : $(NAME)
 $(NAME) : $(OBJS) so_long.h get_next_line.h
 	cc $(FLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 	
-bonus : $(OBJS_BONUS) bonuss/so_long_bonus.h get_next_line.h
+bonus : $(NAME_BONUS)
+
+$(NAME_BONUS) : $(OBJS_BONUS) bonuss/so_long_bonus.h get_next_line.h
 	cc $(FLAGS) $(OBJS_BONUS) -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS)
 	
 %.o: %.c

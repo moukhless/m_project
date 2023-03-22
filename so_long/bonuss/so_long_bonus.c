@@ -6,11 +6,30 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:22:31 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/20 01:42:40 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/22 08:10:10 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+void	protect_img_enemy_bonus(t_var *var)
+{
+	if (!var->img_ptr_wall || !var->img_ptr_ground || !var->img_ptr_coll
+		|| !var->img_ptr_exit || !var->img_ptr_player || !var->img_ptr_enemy)
+	{
+		write(2, "ERROR\n", 6);
+		write(2, "Can't access to image.\n", 23);
+		t_enemy_clean(&(var->enemy));
+		free_all_and_exit_bonus(var);
+	}
+	if (!var->mlx_ptr || !var->win_ptr)
+	{
+		write(2, "ERROR\n", 6);
+		write(2, "Problem in alocation\n", 21);
+		t_enemy_clean(&(var->enemy));
+		free_all_and_exit_bonus(var);
+	}
+}
 
 void	initialisation_bonus(t_var *var)
 {
@@ -66,11 +85,11 @@ int	main(int argc, char **argv)
 		write(2, "You should only be used 2 arg.\n", 31);
 		exit (0);
 	}
-	fd = open(argv[argc - 1], O_RDWR);
 	check_map_type_bonus(argv[argc - 1]);
+	fd = open(argv[argc - 1], O_RDWR);
 	var = (t_var *)malloc(sizeof(t_var));
 	if (!var)
-		return (0);
+		return (-1);
 	fill_map_in_matrix_bonus(var, fd, argv);
 	initialisation_bonus(var);
 	protect_img_bonus(var);

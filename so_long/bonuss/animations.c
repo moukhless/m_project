@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:25:53 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/17 12:38:17 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/21 10:53:01 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	animation_of_enemy(t_var *var, int *count_e)
 		while (p)
 		{
 			enemy_movement(p, var);
-			protect_img_bonus(var);
+			protect_img_enemy_bonus(var);
 			p = p->next;
 		}
 		*count_e = 0;

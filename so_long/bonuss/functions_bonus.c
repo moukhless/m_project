@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:43:39 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/20 01:35:32 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/21 10:55:30 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,11 @@ void	check_map_walls_bonus(t_var *var)
 void	check_map_bonus(t_var *var)
 {
 	if (var->number_of_player > 1 || var->number_of_exit > 1
-		|| var->height_win >= var->width_win || var->number_of_player == 0
+		|| var->number_of_player == 0
 		|| var->number_of_exit == 0 || var->number_of_coll == 0)
 	{
 		write(2, "Error\n", 6);
-		if (var->height_win >= var->width_win)
-			write(2, "Your map must be rectangular.\n", 30);
-		else if (var->number_of_player == 0 || var->number_of_exit == 0
+		if (var->number_of_player == 0 || var->number_of_exit == 0
 			|| var->number_of_coll == 0)
 			write(2, "You missed one caracter.\n", 25);
 		else

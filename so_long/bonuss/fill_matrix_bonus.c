@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:48:57 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/20 02:02:58 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/22 08:08:12 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,47 @@ void	check_map_type_bonus(char *str)
 	char	*type;
 
 	i = 0;
+	type = NULL;
+	i = get_point_bonus(str);
+	j = i + 1;
 	while (str[i])
-	{
-		if (str[i] == '.')
-		{
-			i++;
-			j = 0;
-			type = malloc(4);
-			while (j < 3)
-				type[j++] = str[i++];
-			type[j] = '\0';
-		}
-		if (str[i] == '\0')
-			break ;
 		i++;
-	}
-	if (i - j != 3 || ft_strcmp_bonus(type, "ber") != 0)
+	type = malloc(i - j + 1);
+	i = j;
+	j = 0;
+	while (str[i])
+		type[j++] = str[i++];
+	type[j] = '\0';
+	check_map_type_next_bonus(type);
+}
+
+void	check_map_type_next_bonus(char *type)
+{
+	if (type == NULL || ft_strcmp_bonus(type, "ber") != 0)
 	{
 		write(2, "ERROR\n", 6);
-		write(2, "Type of file is not valide\n", 28);
+		write(2, "Type of file is not valide\n", 27);
 		free(type);
 		exit (0);
 	}
 	else
 		free(type);
+}
+
+int	get_point_bonus(char *str)
+{
+	int	i;
+	int	save;
+
+	i = 0;
+	save = 0;
+	while (str[i])
+	{
+		if (str[i] == '.')
+			save = i;
+		i++;
+	}
+	return (save);
 }
 
 void	fill_matrix_bonus(t_var *var, char **matrix)

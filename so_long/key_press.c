@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:23:07 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/18 21:24:28 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:27:51 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	key_up(t_var *var)
 {
-	char	*sc;	
+	char	*sc;
+	int		c_n;	
 
 	if (is_a_exit(var->width, var->height - 60, var) == 0
 		|| (is_a_exit(var->width, var->height - 60, var) == 1
@@ -22,7 +23,8 @@ void	key_up(t_var *var)
 	{
 		var->score++;
 		sc = itoa(var->score);
-		write(1, sc, 5);
+		c_n = ft_strlen(sc);
+		write(1, sc, c_n);
 		write(1, "\n", 1);
 		free(sc);
 		var->height -= 60;
@@ -33,6 +35,7 @@ void	key_up(t_var *var)
 void	key_down(t_var *var)
 {
 	char	*sc;
+	int		c_n;
 
 	if (is_a_exit(var->width, var->height + 60, var) == 0
 		|| (is_a_exit(var->width, var->height + 60, var) == 1
@@ -40,7 +43,8 @@ void	key_down(t_var *var)
 	{
 		var->score++;
 		sc = itoa(var->score);
-		write(1, sc, 5);
+		c_n = ft_strlen(sc);
+		write(1, sc, c_n);
 		write(1, "\n", 1);
 		free(sc);
 		var->height += 60;
@@ -51,6 +55,7 @@ void	key_down(t_var *var)
 void	key_right(t_var *var)
 {
 	char	*sc;
+	int		c_n;
 
 	if (is_a_exit(var->width + 60, var->height, var) == 0
 		|| (is_a_exit(var->width + 60, var->height, var) == 1
@@ -58,7 +63,8 @@ void	key_right(t_var *var)
 	{
 		var->score++;
 		sc = itoa(var->score);
-		write(1, sc, 5);
+		c_n = ft_strlen(sc);
+		write(1, sc, c_n);
 		write(1, "\n", 1);
 		free(sc);
 		var->width += 60;
@@ -68,7 +74,8 @@ void	key_right(t_var *var)
 
 void	key_left(t_var *var)
 {
-	char	*sc;	
+	char	*sc;
+	int		c_n;	
 
 	if (is_a_exit(var->width - 60, var->height, var) == 0
 		|| (is_a_exit(var->width - 60, var->height, var) == 1
@@ -76,7 +83,8 @@ void	key_left(t_var *var)
 	{
 		var->score++;
 		sc = itoa(var->score);
-		write(1, sc, 5);
+		c_n = ft_strlen(sc);
+		write(1, sc, c_n);
 		write(1, "\n", 1);
 		free(sc);
 		var->width -= 60;
