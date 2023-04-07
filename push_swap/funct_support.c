@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 17:19:30 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/20 20:14:05 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/04/06 22:08:03 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ long	ft_atoi(char *str)
 	while (str[ch] >= '0' && str[ch] <= '9')
 	{
 		if (res * signe > INT_MAX || res * signe < INT_MIN)
-			return (res);
+			return (res * signe);
 		res = (res * 10) + (str[ch] - '0');
 		ch++;
 	}

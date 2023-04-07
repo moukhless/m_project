@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:13:30 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/20 19:54:47 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:50:15 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,11 @@ void	do_rotate_b(t_stack **stack_b, t_stack *s_b);
 void	do_reverse_rotate_a(t_stack **stack_a, t_stack *s_a);
 void	do_reverse_rotate_b(t_stack **stack_b, t_stack *s_b);
 void	do_algo(t_stack *stack_a, t_stack *stack_b, int *arr, int count_num);
-void	sort_stack_size_3(t_stack **stack_a, t_stack **stack_b);
+void	sort_stack_size_3(t_stack **stack_a);
+void	sort_stack_size_3_next1(t_stack **stack_a,
+			int index_max, int index_min);
 void	sort_stack_size_3_next(t_stack **stack_a,
-			t_stack **stack_b, t_stack *s_a);
+			t_stack *s_a, int min, int max);
 void	sort_stack_size_5(t_stack *stack_a, t_stack *stack_b,
 			int *arr, int edge_of_arr);
 void	sort_stack_size_5_next(t_stack *stack_a, t_stack *stack_b,

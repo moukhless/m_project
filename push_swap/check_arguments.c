@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 21:08:55 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/03/20 17:41:15 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/04/07 18:14:49 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	check_is_number(char *number)
 {
 	int	j;
-	int	signe;
 
 	j = 0;
-	signe = 0;
 	while (number[j])
 	{
 		if (number[j] == '-' || number[j] == '+')
@@ -29,12 +27,11 @@ int	check_is_number(char *number)
 		}
 		if ((number[j] < '0' || number[j] > '9') && number[j] != ' ')
 			return (write(2, "Error\n", 6), 0);
-		if (number[j] >= '0' && number[j] <= '9')
-			signe = 1;
+		if (number[j] >= '0' && number[j] <= '9'
+			&& (number[j + 1] == '-' || number[j + 1] == '+'))
+			return (write(2, "Error\n", 6), 0);
 		j++;
 	}
-	if (signe == 0)
-		return (write(2, "Error\n", 6), 0);
 	return (1);
 }
 
