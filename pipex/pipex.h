@@ -6,16 +6,16 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 15:55:42 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/04/14 15:59:04 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:42:31 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
+# include <stdio.h>
+# include <errno.h>
+# include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -35,11 +35,13 @@ char **check_cmd(char *argv, char **env, int file);
 int check_empty_arg(char *arg);
 void free_double_p(char **str);
 void exec_cmd(char **argv, char **env);
-void parent_proccess(char **argv, char **env, int fd[]);
+void child_proccess_2(char **argv, char **env, int fd[]);
 int open_outfile_d(char **argv);
-void child_proccess(char **argv, char **env, int fd[]);
+void child_proccess_1(char **argv, char **env, int fd[]);
 int open_infile_d(char **argv);
 void error_msg_p_p(char **argv, int outfile);
+void error_msg_c_p(char **argv, int infile);
 char **return_cmd(char **cmd, char *str, char **paths, char *cm);
+void ft_pipe_m(int fd[]);
 
 # endif

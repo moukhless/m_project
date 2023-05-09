@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arg2.c                                       :+:      :+:    :+:   */
+/*   check_arg2_man.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 21:54:24 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/04/10 16:42:33 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/08 08:43:42 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void free_double_p(char **str)
 
     i = 0;
     while (str[i])
-        free(str[i++]);
+    {
+        free(str[i]);
+        i++;
+    }
     free(str[i]);
     free(str);
 }
@@ -38,9 +41,9 @@ void free_double_p(char **str)
 void error_msg_p_p(char **argv, int outfile)
 {
     if (!argv[3][0])
-        write (2, "zsh: permission denied:\n", 24);
+        write (2, "permission denied:\n", 19);
     else 
-        write (2, "zsh: command not found: \n", 25);
+        write (2, "command not found: \n", 20);
     close(outfile);
     exit (1);
 }

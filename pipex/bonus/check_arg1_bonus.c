@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:39:10 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/04/13 00:25:52 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:44:58 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char **get_paths(char **env, char **cmd, int file)
     }
     if (!value)
     {
-        write (2, "zsh: command not found: ", 24);
+        write (2, "command not found: ", 19);
         write (2, cmd[0], ft_strlen(cmd[0]));
         write (2, "\n", 1);
         free_double_p(cmd);
@@ -59,7 +59,7 @@ char **get_paths_bonus(char **env, char **cmd)
     }
     if (!value)
     {
-        write (2, "zsh: command not found: ", 24);
+        write (2, "command not found: ", 19);
         write (2, cmd[0], ft_strlen(cmd[0]));
         write (2, "\n", 1);
         free_double_p(cmd);
@@ -77,20 +77,13 @@ char *check_cmd_is_exit(char **paths, char *cmd)
     i = 0;
     while (paths[i])
     {
-        path = ft_strjoin(paths[i], cmd);
+        path = ft_strjoin_p(paths[i], cmd);
         if (access(path, X_OK) == 0)
             return (path);
         free(path);
         i++;
     }
     return (NULL);
-}
-
-int check_path(char *path)
-{
-    if (access(path, X_OK) == 0)
-        return (0);
-    return (1);
 }
 
 char **check_cmd(char *argv, char **env, int file)
@@ -107,14 +100,14 @@ char **check_cmd(char *argv, char **env, int file)
     if (cmd[0][0] != '/')
     {
         paths = get_paths(env, cmd, file);
-        cm = ft_strjoin("/", cmd[0]);
+        cm = ft_strjoin_p("/", cmd[0]);
         str = check_cmd_is_exit(paths, cm);
         if (str)
             return(return_cmd(cmd, str, paths, cm));
         free_double_p(paths);
         free(cm);
     }
-    write (2, "zsh: command not found: ", 24);
+    write (2, "command not found: ", 19);
     write (2, cmd[0], ft_strlen(cmd[0]));
     write (2, "\n", 1);
     free_double_p(cmd);
@@ -135,14 +128,14 @@ char **check_cmd_bonus(char *argv, char **env)
     if (cmd[0][0] != '/')
     {
         paths = get_paths_bonus(env, cmd);
-        cm = ft_strjoin("/", cmd[0]);
+        cm = ft_strjoin_p("/", cmd[0]);
         str = check_cmd_is_exit(paths, cm);
         if (str)
             return(return_cmd(cmd, str, paths, cm));
         free_double_p(paths);
         free(cm);
     }
-    write (2, "zsh: command not found: ", 24);
+    write (2, "command not found: ", 19);
     write (2, cmd[0], ft_strlen(cmd[0]));
     write (2, "\n", 1);
     free_double_p(cmd);

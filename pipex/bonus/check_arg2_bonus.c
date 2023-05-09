@@ -6,11 +6,18 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:39:47 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/04/12 17:40:09 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:39:19 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
+
+int check_path(char *path)
+{
+    if (access(path, X_OK) == 0)
+        return (0);
+    return (1);
+}
 
 int check_empty_arg(char *arg)
 {
@@ -30,7 +37,10 @@ void free_double_p(char **str)
 
     i = 0;
     while (str[i])
-        free(str[i++]);
+    {
+        free(str[i]);
+        i++;
+    }
     free(str[i]);
     free(str);
 }
@@ -38,9 +48,9 @@ void free_double_p(char **str)
 void error_msg_p_p(char **argv, int outfile)
 {
     if (!argv[3][0])
-        write (2, "zsh: permission denied:\n", 24);
+        write (2, "permission denied:\n", 19);
     else 
-        write (2, "zsh: command not found: \n", 25);
+        write (2, "command not found: \n", 20);
     close(outfile);
     exit (1);
 }

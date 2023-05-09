@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arg1.c                                       :+:      :+:    :+:   */
+/*   check_arg1_man.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:02:26 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/04/12 17:23:12 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/07 14:44:43 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char **get_paths(char **env, char **cmd, int file)
     }
     if (!value)
     {
-        write (2, "zsh: command not found: ", 24);
+        write (2, "command not found: ", 19);
         write (2, cmd[0], ft_strlen(cmd[0]));
         write (2, "\n", 1);
         free_double_p(cmd);
@@ -86,7 +86,7 @@ char **check_cmd(char *argv, char **env, int file)
         free_double_p(paths);
         free(cm);
     }
-    write (2, "zsh: command not found: ", 24);
+    write (2 , "command not fount: ", 19);
     write (2, cmd[0], ft_strlen(cmd[0]));
     write (2, "\n", 1);
     free_double_p(cmd);

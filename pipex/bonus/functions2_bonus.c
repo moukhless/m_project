@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:41:22 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/04/12 17:41:41 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:33:59 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_strcat(char *s1, char *s2, int i )
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_p(char *s1, char *s2)
 {
 	char	*str;
 	int		i;
