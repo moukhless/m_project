@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:46:24 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/09 23:56:10 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:50:31 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void ft_delete_here_doc(t_var *var)
 {
     int status;
     
-    status = unlink(".here_doc");
+    status = unlink("/tmp/here_doc");
     if (status == -1)
     {
         perror("Error deleting file");

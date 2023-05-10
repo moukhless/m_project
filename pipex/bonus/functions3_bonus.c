@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:55:53 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/10 00:01:12 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:50:02 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int open_here_doc(char **argv)
     int file;
     int len_error;
 
-    file = open(".here_doc", O_WRONLY | O_CREAT, 0777);
+    file = open("/tmp/here_doc", O_WRONLY | O_CREAT, 0777);
     if (file == -1)
     {
         len_error = ft_strlen(strerror(errno));
@@ -56,7 +56,7 @@ int open_here_doc(char **argv)
         write (2, "\n", 1);
     }
     fill_file(argv, file);
-    file = open(".here_doc", O_RDONLY, 0777);
+    file = open("/tmp/here_doc", O_RDONLY, 0777);
     if (file == -1)
     {
         len_error = ft_strlen(strerror(errno));

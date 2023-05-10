@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:36:13 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/09 23:56:21 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:47:57 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,22 @@ void exec_child_p(char **argv, char **env, t_var *var, int argc)
             child_proccess(argv, env, var);
         (var->num_cmd)++;
     }
-    wait(NULL);
+    wait_childs(var);
+}
+
+void wait_childs(t_var *var)
+{
+    int j;
+    
+    j = 0;
+    while (j < (var->n_cmd - 1) * 2)
+        close(var->fd[j++]);
+    j = 0;
+    while (j < var->n_cmd)
+    {
+        wait(NULL);
+        j++;
+    }
 }
 
 void exec_cmd(char **argv, char **env, int argc)
@@ -66,7 +81,8 @@ void exec_cmd(char **argv, char **env, int argc)
     }
     ft_pipe(var, num_pipe);
     exec_child_p(argv, env, var, argc);
-    ft_delete_here_doc(var);
+    if (ft_strcmp("here_doc", argv[1]) == 0)
+        ft_delete_here_doc(var);
     free(var->fd);
     free(var);
 }

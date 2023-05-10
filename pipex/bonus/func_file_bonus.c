@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:52:13 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/09 23:17:41 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:57:37 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char **use_here_doc(char **argv, char **env , t_var *var)
 {
     char **cmd;
-    int status;
     
     if (!argv[var->num_cmd + 3][0])
         write (2, "permission denied:\n", 19);
@@ -24,12 +23,6 @@ char **use_here_doc(char **argv, char **env , t_var *var)
     cmd = check_cmd(argv[var->num_cmd + 3], env, var->file);
     if (!cmd)
     {
-        status = unlink(".here_doc");
-        if (status == -1)
-        {
-            perror("Error deleting file");
-            exit(1);
-        }
         free(var->fd);
         free(var);
         exit (1);

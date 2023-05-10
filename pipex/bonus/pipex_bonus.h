@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:11:09 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/09 22:19:18 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:48:00 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ char **do_algo(char **argv, char **env , t_var *var);
 int open_here_doc(char **argv);
 void ft_delete_here_doc(t_var *var);
 void fill_file(char **argv, int fd);
+void wait_childs(t_var *var);
 
 #endif

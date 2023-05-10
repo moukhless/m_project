@@ -6,13 +6,13 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 14:39:35 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/09 19:36:46 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:38:21 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void ft_pipe_m(int fd[])
+void    ft_pipe_m(int fd[])
 {
     if (pipe(fd) == -1)
     {
