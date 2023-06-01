@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:56:09 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/25 22:57:32 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:39:55 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-int	ft_atoi(char *str)
+unsigned long	ft_atoi(char *str)
 {
 	int					c;
 	unsigned long long	res;

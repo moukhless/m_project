@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:29:00 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/26 14:57:57 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:51:32 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ void	*routine_for_one_philo(void *arg)
 
 	philo = (t_philo *)arg;
 	pthread_mutex_lock(&(philo->fork));
-	printf("%lld %d has taken a fork\n",
+	printf("%lu %d has taken a fork\n",
 		get_time(1000) - philo->data->time, philo->id);
 	ft_sleep(philo->data->time_to_die);
-	printf("%lld %d died\n", get_time(1000) - philo->data->time, philo->id);
+	printf("%lu %d died\n", get_time(1000) - philo->data->time, philo->id);
+	free(philo->data);
+	clean_philo(&philo);
 	return (NULL);
 }
 
@@ -81,7 +83,7 @@ void	ft_check_death(t_philo *philo)
 
 void	simulation(t_philo *philo, t_data *data)
 {
-	int			num_philo;
+	int	num_philo;
 
 	num_philo = philo->data->num_of_philo;
 	if (num_philo == 1)

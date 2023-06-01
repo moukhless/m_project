@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_operations_man.c                             :+:      :+:    :+:   */
+/*   philo_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:11:53 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/25 22:46:10 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:16:26 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,20 @@ t_data	*get_data(char **argv)
 	else
 		data->num_of_time_each_philo_must_eat = 0;
 	return (data);
+}
+
+void	clean_philo(t_philo **philo)
+{
+	int		num_philo;
+	t_philo	*p;
+
+	p = *philo;
+	num_philo = (*philo)->data->num_of_philo;
+	while (num_philo > 0)
+	{
+		p = (*philo)->next;
+		free((*philo));
+		*philo = p;
+		num_philo--;
+	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_man.c                                        :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:31:35 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/25 16:12:49 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:53:39 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	check_arg(char **argv)
 {
-	int	i;
-	int	num;
+	int				i;
+	unsigned long	num;
 
 	i = 1;
 	while (argv[i])
 	{
 		if (is_digit(argv[i]) == 1)
 			return (1);
-		num = atoi(argv[i]);
+		num = ft_atoi(argv[i]);
 		if (num == 0)
 			return (1);
 		i++;
@@ -30,7 +30,7 @@ int	check_arg(char **argv)
 	return (0);
 }
 
-long long	get_time(int i)
+unsigned long	get_time(int i)
 {
 	struct timeval	tv;
 

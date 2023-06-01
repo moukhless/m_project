@@ -6,15 +6,15 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:55:16 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/26 15:49:26 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:49:01 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_sleep(long long c_time, t_philo *philo)
+void	ft_sleep(unsigned long c_time, t_philo *philo)
 {
-	long long	t_time;
+	unsigned long	t_time;
 
 	t_time = get_time(1000);
 	while (get_time(1000) - t_time < c_time)
@@ -27,7 +27,7 @@ void	ft_sleep(long long c_time, t_philo *philo)
 void	print_msg(t_philo *philo, char *str)
 {
 	sem_wait(philo->data->print);
-	printf("%lld %d %s\n", get_time(1000) - philo->data->time, philo->id, str);
+	printf("%lu %d %s\n", get_time(1000) - philo->data->time, philo->id, str);
 	sem_post(philo->data->print);
 }
 
@@ -39,7 +39,7 @@ void	ft_check_death(t_philo *philo)
 	if (get_time(1000) - philo->last_time_eat >= philo->data->time_to_die)
 	{
 		sem_wait(philo->data->print);
-		printf("%lld %d died\n",
+		printf("%lu %d died\n",
 			get_time(1000) - philo->data->time, philo->id);
 		if (philo->data->num_of_time_each_philo_must_eat != 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:48:39 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/05/25 22:58:58 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:54:53 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	check_arg(char **argv)
 {
-	int	i;
-	int	num;
+	int				i;
+	unsigned long	num;
 
 	i = 1;
 	while (argv[i])
 	{
 		if (is_digit(argv[i]) == 1)
 			return (1);
-		num = atoi(argv[i]);
+		num = ft_atoi(argv[i]);
 		if (num == 0)
 			return (1);
 		i++;
@@ -30,12 +30,17 @@ int	check_arg(char **argv)
 	return (0);
 }
 
-long long	get_time(int i)
+unsigned long	get_time(int i)
 {
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_usec / i + tv.tv_sec * i);
+}
+
+void f()
+{
+	system("leaks philo_bonus");
 }
 
 int	main(int argc, char **argv)
@@ -50,6 +55,7 @@ int	main(int argc, char **argv)
 		data = get_data(argv);
 		philo = creat_philos(data);
 		simulation(philo, data);
+		atexit(f);
 		return (0);
 	}
 	return (1);
